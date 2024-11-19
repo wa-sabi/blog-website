@@ -1,0 +1,35 @@
+<%- include("partials/header.ejs") %>
+
+<main class="container">
+    <div class="post-section">
+        <div class="heading">
+            <h2>Write a new blog post</h2>
+        </div>
+
+        <div class="posting">
+            <form action="/submit" method="POST">
+                <input type="text" name="headline" placeholder="Headline">
+                <textarea class="blogText" type="text" name="blogText" placeholder="What is on your mind?" style="height:200px"></textarea>
+                <br>
+                <input type="submit" value="Post to Blog">
+            </form>
+        </div>
+
+        <div class="heading">
+            <hr>
+            <h2>Read posts from the archive</h2>
+        </div>
+        
+        <div class="archive">
+            <% posts.forEach((post) => { %>
+                <div class="post">
+                    <h2><%= post.headline %></h2>
+                    <p class="date"><%= new Date().toLocaleString('en-GB', { timeZone: 'UTC' }).split(',')[0] %> </p>
+                    <p><%= post.content %></p>
+                </div>
+            <% }) %>
+        </div>
+     </div>
+</main>    
+
+<%- include("partials/footer.ejs") %>
